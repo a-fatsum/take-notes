@@ -61,71 +61,146 @@
             </div> -->
             <!-- // -->
             <!-- container for all note blocks -->
-            <div id="blocks">
-              <div class="reasons-for-hardship question-box">
-                <h3 class="note-title reason-for-hardship-title">
-                  Reasons for Hardship
-                </h3>
-                <textarea
-                  class="note-area"
-                  rows="6"
-                  cols="50"
-                  placeholder="Write your note here..."
-                ></textarea>
-                <button class="addNoteBtn">Add Note</button>
-              </div>
+            <div class="reasons-for-hardship question-box">
+              <h3
+                id="reasonsForHardshipTitle"
+                class="note-title reason-for-hardship-title"
+              >
+                Reasons for Hardship
+              </h3>
+              <textarea
+                class="note-area"
+                id="noteInput1"
+                rows="6"
+                cols="50"
+                placeholder="Write your note here..."
+              ></textarea>
+              <button class="addNoteBtn">Add Note</button>
+            </div>
 
-              <div class="reasons-for-hardship question-box">
-                <h3 class="note-title expected-to-change-title">
-                  What is expected to change?
-                </h3>
-                <textarea
-                  class="note-area"
-                  rows="6"
-                  cols="50"
-                  placeholder="Write your note here..."
-                ></textarea>
-                <button class="addNoteBtn">Add Note</button>
-              </div>
+            <div class="question-box">
+              <h3
+                id="howManyMonthsTitle"
+                class="note-title expected-to-change-title"
+              >
+                How many months do you expect this hardship to continue?
+              </h3>
+              <input
+                class="small-input"
+                type="text"
+                placeholder="Months"
+                id="howManyMonths"
+              />
+            </div>
+
+            <div class="reasons-for-hardship question-box">
+              <h3
+                id="expectedToChangeTitle"
+                class="note-title expected-to-change-title"
+              >
+                What is expected to change?
+              </h3>
+              <textarea
+                class="note-area"
+                id="noteInput2"
+                rows="6"
+                cols="50"
+                placeholder="Write your note here..."
+              ></textarea>
+              <button class="addNoteBtn">Add Note</button>
             </div>
 
             <!--  -->
             <!-- <div -->
-            <div class="vehicle-rego-wrapper">
-              <h3>Is the vehicle cucrrently insured?</h3>
-              <input
-                class="checkbox"
-                type="checkbox"
-                id="yesCheckbox"
-                value="Yes"
-              />
-              <label for="yesCheckbox">Yes</label>
-              <input
-                class="checkbox"
-                type="checkbox"
-                id="noCheckbox"
-                value="No"
-              />
-              <label for="noCheckbox">No</label>
-            </div>
-          </div>
+            <div class="question-box">
+              <div class="vehicle-rego-wrapper">
+                <h3>Is the vehicle cucrrently insured?</h3>
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  id="yesCheckbox"
+                  value="Yes"
+                />
+                <label for="yesCheckbox">Yes</label>
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  id="noCheckbox"
+                  value="No"
+                />
+                <label for="noCheckbox">No</label>
+              </div>
 
-          <div class="container">
-            <h3>Do you like this app?</h3>
-            <input
-              class="checkbox"
-              type="checkbox"
-              id="yesCheckbox"
-              value="Yes"
-            />
-            <label for="yesCheckbox">Yes</label>
-            <input
-              class="checkbox"
-              type="checkbox"
-              id="noCheckbox"
-              value="No"
-            />
-            <label for="noCheckbox">No</label>
+              <div class="container">
+                <h3>Is the vehicle cucrrently registered?</h3>
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  id="yesCheckbox"
+                  value="Yes"
+                />
+                <label for="yesCheckbox">Yes</label>
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  id="noCheckbox"
+                  value="No"
+                />
+                <label for="noCheckbox">No</label>
+              </div>
+            </div>
+
+            <div class="question-box">
+              <h3
+                id="howManyMonthsTitle"
+                class="note-title expected-to-change-title"
+              >
+                Which industry are you in?
+              </h3>
+              <input
+                class="small-input"
+                type="text"
+                placeholder="Months"
+                id="howManyMonths"
+              />
+            </div>
+
+            <div class="question-box">
+              <h3
+                id="howManyMonthsTitle"
+                class="note-title expected-to-change-title"
+              >
+                How many days is the account currently overdue by?
+              </h3>
+              <input
+                class="small-input"
+                type="text"
+                placeholder="Months"
+                id="howManyMonths"
+              />
+            </div>
+
+            <!--  -->
+            <div class="question-box">
+              <div class="vehicle-rego-wrapper">
+                <h3>Is the account cucrrently with an agent?</h3>
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  id="yesCheckbox"
+                  value="Yes"
+                />
+                <label for="yesCheckbox">Yes</label>
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  id="noCheckbox"
+                  value="No"
+                />
+                <label for="noCheckbox">No</label>
+              </div>
+            </div>
+            <!--  -->
           </div>
         </div>
         <!--  -->

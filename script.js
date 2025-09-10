@@ -11,22 +11,41 @@ function addNote(titleId, elementId) {
   const element = document.getElementById(elementId);
   //
   const note = {
-    title: titleElement.textContent,
+    // id:
+    title: titleElement.id,
     content: element.value,
   };
-  if (myNotesList.includes(note)) {
-    return;
-  } else {
-    myNotesList.push(note);
-  }
+  // myNotesList.push(note);
+
+  // if (myNotesList.length > 0) {
+  myNotesList.forEach((note, i) => {
+    if (note.title === titleId) {
+      console.log("note.title", note.title);
+      console.log("titleId", titleId);
+      console.log("XXXXX--==>>", note);
+      return;
+    } else {
+      myNotesList.push(note);
+    }
+  });
+  // }
+  console.log("MY-NOTES-LIST", myNotesList);
+  // if (note.title === titleId) {
+  //   console.log("note.title", note.title);
+  //   console.log("");
+  //   return;
+  // } else {
+  //   myNotesList.push(note);
+  // }
+
   const outputArea = document.getElementById("outputArea");
   outputArea.innerHTML = myNotesList
     .map((note) => `<p>${note.title}</p><p>${note.content}</p>`)
     .join("");
 
-  console.log("THIS", titleElement.textContent);
-  console.log("MY NOTES LIST", myNotesList);
-  console.log("note", note);
+  // console.log("THIS", titleElement.textContent);
+  // console.log("MY NOTES LIST", myNotesList);
+  // console.log("note", note);
 }
 
 function toggleCheckbox(titleId, elementId) {
@@ -56,7 +75,7 @@ function clearNotes() {
   myNotesList.length = 0; // Clear the array
   const outputArea = document.getElementById("outputArea");
   outputArea.innerHTML = ""; // Clear the displayed notes
-  console.log("Notes cleared");
+  // console.log("Notes cleared");
 }
 
 // button event listeners
@@ -67,8 +86,9 @@ clearButton.addEventListener("click", clearNotes);
 //
 const addNoteButtons = document.querySelectorAll(".addNoteBtn");
 addNoteButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    addNote("reasonsForHardshipTitle", "noteInput");
+  button.addEventListener("click", (e) => {
+    addNote("reasonsForHardshipTitle", "noteInput1");
+    // console.log("Button clicked:", e.target);
   });
 });
 //
