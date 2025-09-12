@@ -9,59 +9,41 @@ const myNotesList = [];
 function addNote(titleId, elementId) {
   const titleElement = document.getElementById(titleId);
   const element = document.getElementById(elementId);
-  //
-  const note = {
-    // id:
-    title: titleElement.id,
-    content: element.value,
-  };
-  // myNotesList.push(note);
 
-  // if (myNotesList.length > 0) {
-  myNotesList.forEach((note, i) => {
-    if (note.title === titleId) {
-      console.log("note.title", note.title);
-      console.log("titleId", titleId);
-      console.log("XXXXX--==>>", note);
-      return;
-    } else {
-      myNotesList.push(note);
-    }
-  });
-  // }
-  console.log("MY-NOTES-LIST", myNotesList);
-  // if (note.title === titleId) {
-  //   console.log("note.title", note.title);
-  //   console.log("");
-  //   return;
-  // } else {
-  //   myNotesList.push(note);
-  // }
+  const note = {
+    title: titleElement.innerText.trim(),
+    content: element.value.trim(),
+  };
+
+  // Check if note already exists
+  const exists = myNotesList.some(
+    (n) => n.title === note.title && n.content === note.content
+  );
+
+  if (!exists) {
+    myNotesList.push(note);
+  }
 
   const outputArea = document.getElementById("outputArea");
   outputArea.innerHTML = myNotesList
-    .map((note) => `<p>${note.title}</p><p>${note.content}</p>`)
+    .map((n) => `<p>${n.title}</p><p>${n.content}</p>`)
     .join("");
-
-  // console.log("THIS", titleElement.textContent);
-  // console.log("MY NOTES LIST", myNotesList);
-  // console.log("note", note);
 }
 
+// console.log("MY-NOTES-LIST", myNotesList);
 function toggleCheckbox(titleId, elementId) {
   const checkbox = document.getElementById(elementId);
   if (checkbox.checked) {
     addNote(titleId, elementId);
+    // console.log("MY-NOTES-LIST", myNotesList);
   } else {
     // checkbox.checked = true;
   }
 }
-
 // function to copy contents of outputArea to clipboard
 function copyContents() {
   const outputArea = document.getElementById("outputArea");
   const textToCopy = outputArea.innerText;
-
   navigator.clipboard.writeText(textToCopy).then(
     function () {
       alert("Notes copied to clipboard!");
@@ -78,24 +60,27 @@ function clearNotes() {
   // console.log("Notes cleared");
 }
 
+// Toggle box
+const toggleCheckboxElement = document.getElementById("verbatimCheckbox");
+toggleCheckboxElement.addEventListener("change", () => {
+  toggleCheckbox("verbatimRead", "verbatimCheckbox");
+});
+
 // button event listeners
 const copyButton = document.getElementById("copyBtn");
 copyButton.addEventListener("click", copyContents);
 const clearButton = document.getElementById("clearBtn");
 clearButton.addEventListener("click", clearNotes);
 //
-const addNoteButtons = document.querySelectorAll(".addNoteBtn");
-addNoteButtons.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    addNote("reasonsForHardshipTitle", "noteInput1");
-    // console.log("Button clicked:", e.target);
-  });
+const expectedToChangeButton = document.getElementById(
+  "expectedToChangeButton"
+);
+
+expectedToChangeButton.addEventListener("click", (e) => {
+  addNote("expectedToChangeTitle", "noteInput2");
+  // console.log("Button clicked:", e.target);
 });
 //
-const toggleCheckboxElement = document.getElementById("verbatimCheckbox");
-toggleCheckboxElement.addEventListener("change", () => {
-  toggleCheckbox("verbatimRead", "verbatimCheckbox");
-});
 
 // TESTING DYNAMIC BLOCKS ----
 // TESTING DYNAMIC BLOCKS ----
