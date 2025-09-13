@@ -279,6 +279,18 @@ button:active {
   }
 }
 
+.smallButton {
+  width: 100px;
+  padding: 0.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: border-color 0.2s ease;
+  margin-left: 0.5rem;
+}
+
 .small-input {
   width: 160px;
   padding: 0.5rem;
@@ -293,4 +305,32 @@ button:active {
   outline: none;
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.highlight {
+  animation: highlightAnimation 2s ease;
+  /* background-color: #484b4a5f; */
+}
+
+@keyframes highlightAnimation {
+  0% {
+    background-color: rgba(102, 126, 234, 0.3);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.listOfStates {
+  width: 100px;
+  height: 40px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: border-color 0.2s ease;
+  background-color: #667eea;
+  color: white;
+  text-align: center;
 }

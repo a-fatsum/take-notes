@@ -46,21 +46,6 @@
               </div>
             </div>
 
-            <!-- <div
-              id="reasonsForHardship"
-              class="reasons-for-hardship question-box"
-            >
-              <h3 id="reasonsForHardshipTitle">Reasons for Hardship</h3>
-              <textarea
-                id="noteInput"
-                rows="10"
-                cols="50"
-                placeholder="Write your note here..."
-              ></textarea>
-              <button class="addNoteBtn">Add Note</button>
-            </div> -->
-            <!-- // -->
-            <!-- container for all note blocks -->
             <div class="reasons-for-hardship question-box">
               <h3
                 id="reasonsForHardshipTitle"
@@ -75,7 +60,9 @@
                 cols="50"
                 placeholder="Write your note here..."
               ></textarea>
-              <button class="addNoteBtn">Add Note</button>
+              <button id="reasonsForHardshipButton" class="addNoteBtn">
+                Add Note
+              </button>
             </div>
 
             <div class="question-box">
@@ -89,8 +76,11 @@
                 class="small-input"
                 type="text"
                 placeholder="Months"
-                id="howManyMonths"
+                id="howManyMonthsInput"
               />
+              <button id="howManyMonthsButton" class="addNoteBtn smallButton">
+                Add Note
+              </button>
             </div>
 
             <div class="reasons-for-hardship question-box">
@@ -115,40 +105,44 @@
             <!--  -->
             <!-- <div -->
             <div class="question-box">
-              <div class="vehicle-rego-wrapper">
-                <h3>Is the vehicle cucrrently insured?</h3>
+              <div class="vehicle-insured-wrapper">
+                <h3 id="isVehicleCurrentlyInsuredTitle">
+                  Is the vehicle currently insured?
+                </h3>
                 <input
                   class="checkbox"
                   type="checkbox"
-                  id="yesCheckbox"
+                  id="insuredYesCheckbox"
                   value="Yes"
                 />
-                <label for="yesCheckbox">Yes</label>
+                <label for="insuredYesCheckbox">Yes</label>
                 <input
                   class="checkbox"
                   type="checkbox"
-                  id="noCheckbox"
+                  id="insuredNoCheckbox"
                   value="No"
                 />
-                <label for="noCheckbox">No</label>
+                <label for="insuredNoCheckbox">No</label>
               </div>
 
               <div class="container">
-                <h3>Is the vehicle cucrrently registered?</h3>
+                <h3 id="isVehicleCurrentlyRegisteredTitle">
+                  Is the vehicle currently registered?
+                </h3>
                 <input
                   class="checkbox"
                   type="checkbox"
-                  id="yesCheckbox"
+                  id="registeredYesCheckbox"
                   value="Yes"
                 />
-                <label for="yesCheckbox">Yes</label>
+                <label for="registeredYesCheckbox">Yes</label>
                 <input
                   class="checkbox"
                   type="checkbox"
-                  id="noCheckbox"
+                  id="registeredNoCheckbox"
                   value="No"
                 />
-                <label for="noCheckbox">No</label>
+                <label for="registeredNoCheckbox">No</label>
               </div>
             </div>
 
