@@ -14,6 +14,16 @@ body {
   padding: 20px;
 }
 
+/* Icons */
+.icon {
+  width: 1.7em;
+  height: 2em;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  color: #667eea;
+}
+
+/* Wrapper */
 #wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -64,6 +74,16 @@ h1 {
   margin-bottom: 2rem;
 }
 
+.is-vehicle-registered {
+}
+.rego-info-input {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  height: 50px;
+  flex: 1;
+}
 .container:last-child {
   margin-bottom: 0;
 }
@@ -283,6 +303,8 @@ button:active {
   width: 100px;
   padding: 0.5rem;
   border: 2px solid #e2e8f0;
+  background: #10b981;
+  color: white;
   border-radius: 8px;
   font-family: inherit;
   font-size: 0.95rem;

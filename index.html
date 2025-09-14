@@ -125,7 +125,7 @@
                 <label for="insuredNoCheckbox">No</label>
               </div>
 
-              <div class="container">
+              <div class="container is-vehicle-registered">
                 <h3 id="isVehicleCurrentlyRegisteredTitle">
                   Is the vehicle currently registered?
                 </h3>
@@ -148,7 +148,7 @@
 
             <div class="question-box">
               <h3
-                id="howManyMonthsTitle"
+                id="whichIndustryTitle"
                 class="note-title expected-to-change-title"
               >
                 Which industry are you in?
@@ -156,24 +156,27 @@
               <input
                 class="small-input"
                 type="text"
-                placeholder="Months"
-                id="howManyMonths"
+                placeholder="industry"
+                id="whichIndustry"
               />
+              <button id="whichIndustryButton" class="smallButton">
+                Add Note
+              </button>
             </div>
 
             <div class="question-box">
-              <h3
-                id="howManyMonthsTitle"
-                class="note-title expected-to-change-title"
-              >
+              <h3 id="howManyDaysTitle" class="note-title">
                 How many days is the account currently overdue by?
               </h3>
               <input
                 class="small-input"
                 type="text"
-                placeholder="Months"
-                id="howManyMonths"
+                placeholder="Days"
+                id="howManyDaysInput"
               />
+              <button id="howManyDaysButton" class="smallButton">
+                Add Note
+              </button>
             </div>
 
             <!--  -->
@@ -216,6 +219,7 @@
     </div>
 
     <!-- script references -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script type="module" src="script.js"></script>
   </body>
 </html>

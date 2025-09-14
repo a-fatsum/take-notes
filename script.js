@@ -26,10 +26,39 @@ function addNote(titleId, elementId) {
   // Highlight the parent container of the title element
   const parentContainer = titleElement.parentElement;
   parentContainer.classList.add("highlight");
+  //
+  const existingIcon = parentContainer.querySelector(".icon");
+  if (!existingIcon) {
+    parentContainer.insertAdjacentHTML(
+      "afterbegin",
+      '<i class="icon" data-lucide="circle-check"></i>'
+    );
+    lucide.createIcons({ root: parentContainer });
+  }
+
+  // check if icon already exists
 
   // Update the output area
   updateOutputArea();
 }
+
+// function addNote(titleId, elementId) {
+//   const titleElement = document.getElementById(titleId);
+//   const element = document.getElementById(elementId);
+//   const note = {
+//     title: titleElement.innerText.trim(),
+//     content: element.value.trim(),
+//   };
+//   // ...
+//   const parentContainer = titleElement.parentElement;
+//   parentContainer.insertAdjacentHTML(
+//     "afterbegin",
+//     '<i class="icon" data-lucide="circle-check"></i>'
+//   );
+//   // This works because lucide already has all the icons
+//   lucide.createIcons({ root: parentContainer });
+//   updateOutputArea();
+// }
 
 function updateOutputArea() {
   const outputArea = document.getElementById("outputArea");
@@ -144,7 +173,7 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
 
     //Create and append select list
     var selectList = document.createElement("select");
-    // selectList.id = "stateSelect";
+    selectList.id = "stateSelect";
     selectList.classList.add("listOfStates");
     parentContainer.appendChild(selectList);
 
@@ -153,6 +182,7 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
       var option = document.createElement("option");
       option.value = array[i];
       option.text = array[i];
+      // option.id = "stateSelect";
       selectList.appendChild(option);
     }
 
@@ -168,7 +198,87 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
       const selectedState = selectList.value;
       // console.log("Selected state: ", selectedState);
       addNote("stateOfRegistrationTitle", "stateSelect");
+      // add a link to the registration info page
+      if (selectedState !== "Select") {
+        switch (selectedState) {
+          case "NSW":
+            window.open(
+              "https://www.service.nsw.gov.au/transaction/renew-vehicle-registration",
+              "_blank"
+            );
+            break;
+          case "QLD":
+            window.open(
+              "https://www.qld.gov.au/transport/registration/renew",
+              "_blank"
+            );
+            break;
+          case "SA":
+            window.open(
+              "https://www.sa.gov.au/topics/driving-and-transport/vehicles-and-registration/renew-your-registration",
+              "_blank"
+            );
+            break;
+          case "TAS":
+            window.open(
+              "https://www.transport.tas.gov.au/registration/renewing_your_registration",
+              "_blank"
+            );
+            break;
+          case "VIC":
+            window.open(
+              "https://www.vicroads.vic.gov.au/registration/renew-or-cancel-your-registration/renew-your-registration",
+              "_blank"
+            );
+            break;
+          case "WA":
+            window.open(
+              "https://www.transport.wa.gov.au/registration/renew-your-registration.asp",
+              "_blank"
+            );
+            break;
+          case "ACT":
+            window.open(
+              "https://www.accesscanberra.act.gov.au/app/answers/detail/a_id/2085/~/vehicle-registration-renewals",
+              "_blank"
+            );
+            break;
+          case "NT":
+            window.open(
+              "https://nt.gov.au/driving/registration/renew-your-vehicle-registration",
+              "_blank"
+            );
+            break;
+          default:
+            break;
+        }
+
+        // Create and append rego information input box
+        var regoInfoInput = document.createElement("input");
+        regoInfoInput.type = "text";
+        regoInfoInput.id = "regoInfoInput";
+        regoInfoInput.classList.add("small-input");
+        regoInfoInput.placeholder = "Enter Rego Expiry Date";
+        // Style the input box
+        regoInfoInput.classList.add("rego-info-input");
+        parentContainer.appendChild(regoInfoInput);
+
+        // Create and append button
+        var regoInfoButton = document.createElement("button");
+        regoInfoButton.id = "regoInfoButton";
+        regoInfoButton.innerHTML = "Add Rego Info";
+        regoInfoButton.classList.add("addNoteBtn");
+        parentContainer.appendChild(regoInfoButton);
+
+        // Add event listener to button
+        regoInfoButton.addEventListener("click", () => {
+          addNote("stateOfRegistrationTitle", "regoInfoInput");
+          // clear the input box
+          regoInfoInput.value = "";
+        });
+      }
     });
+    //
   }
 });
 //
@@ -178,4 +288,16 @@ vehicleCurrentlyRegisteredNoCheckbox.addEventListener("change", () => {
   alert(
     "Vehicle is not registered. Inform the customer that they are in breach of the conditions of their contract."
   );
+});
+
+// Which industry are you in?
+const whichIndustryButton = document.getElementById("whichIndustryButton");
+whichIndustryButton.addEventListener("click", () => {
+  addNote("whichIndustryTitle", "whichIndustry");
+});
+
+// How many days is the account currently overdue by?
+const howManyDaysInput = document.getElementById("howManyDaysInput");
+howManyDaysInput.addEventListener("change", () => {
+  addNote("howManyDaysTitle", "howManyDaysInput");
 });
