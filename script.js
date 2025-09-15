@@ -157,6 +157,20 @@ const vehicleCurrentlyRegisteredNoCheckbox = document.getElementById(
   "registeredNoCheckbox"
 );
 //
+
+vehicleCurrentlyRegisteredNoCheckbox.addEventListener("change", () => {
+  // toggleCheckbox("isVehicleCurrentlyRegisteredTitle", "registeredNoCheckbox");
+  vehicleCurrentlyRegisteredYesCheckbox.checked = false;
+  document.getElementById("stateSelect")?.remove();
+  document.getElementById("stateOfRegistrationTitle")?.remove();
+  document.getElementById("regoInfoInput")?.remove();
+  document.getElementById("regoInfoButton")?.remove();
+  alert(
+    "Vehicle is not registered. Inform the customer that they are in breach of the conditions of their contract."
+  );
+});
+
+// event listener for yes checkbox
 vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
   toggleCheckbox("isVehicleCurrentlyRegisteredTitle", "registeredYesCheckbox");
   vehicleCurrentlyRegisteredNoCheckbox.checked = false;
@@ -282,13 +296,6 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
   }
 });
 //
-vehicleCurrentlyRegisteredNoCheckbox.addEventListener("change", () => {
-  // toggleCheckbox("isVehicleCurrentlyRegisteredTitle", "registeredNoCheckbox");
-  vehicleCurrentlyRegisteredYesCheckbox.checked = false;
-  alert(
-    "Vehicle is not registered. Inform the customer that they are in breach of the conditions of their contract."
-  );
-});
 
 // Which industry are you in?
 const whichIndustryButton = document.getElementById("whichIndustryButton");
