@@ -35,31 +35,20 @@ function addNote(titleId, elementId) {
     );
     lucide.createIcons({ root: parentContainer });
   }
-
-  // check if icon already exists
-
   // Update the output area
   updateOutputArea();
 }
+//
+// addNote("titleId", "elementId");
+function createElement(titleId, elementId) {
+  //
+  const newDiv = document.createElement("div");
 
-// function addNote(titleId, elementId) {
-//   const titleElement = document.getElementById(titleId);
-//   const element = document.getElementById(elementId);
-//   const note = {
-//     title: titleElement.innerText.trim(),
-//     content: element.value.trim(),
-//   };
-//   // ...
-//   const parentContainer = titleElement.parentElement;
-//   parentContainer.insertAdjacentHTML(
-//     "afterbegin",
-//     '<i class="icon" data-lucide="circle-check"></i>'
-//   );
-//   // This works because lucide already has all the icons
-//   lucide.createIcons({ root: parentContainer });
-//   updateOutputArea();
-// }
+  // return element;
+}
 
+// ============================================
+// function to update output area
 function updateOutputArea() {
   const outputArea = document.getElementById("outputArea");
   outputArea.innerHTML = myNotesList
@@ -103,6 +92,7 @@ toggleCheckboxElement.addEventListener("change", () => {
   toggleCheckbox("verbatimRead", "verbatimCheckbox");
 });
 
+// =======================================================================================
 // button event listeners
 const copyButton = document.getElementById("copyBtn");
 copyButton.addEventListener("click", copyContents);
@@ -123,6 +113,7 @@ const reasonsForHardshipButton = document.getElementById(
 );
 reasonsForHardshipButton.addEventListener("click", () => {
   addNote("reasonsForHardshipTitle", "noteInput1");
+  createElement("div", "spacer", "");
 });
 
 // How many months button
