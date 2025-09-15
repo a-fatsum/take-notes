@@ -16,10 +16,13 @@ function addNote(titleId, elementId) {
   };
 
   // Check if note already exists
-  const exists = myNotesList.some(
-    (n) => n.title === note.title && n.content === note.content
-  );
+  // const exists = myNotesList.some(
+  //   (n) => n.title === note.title && n.content === note.content
+  // );
 
+  const exists = checkForDuplicates(note);
+
+  //
   if (!exists) {
     myNotesList.push(note);
   }
@@ -42,23 +45,12 @@ function addNote(titleId, elementId) {
   updateOutputArea();
 }
 
-// function addNote(titleId, elementId) {
-//   const titleElement = document.getElementById(titleId);
-//   const element = document.getElementById(elementId);
-//   const note = {
-//     title: titleElement.innerText.trim(),
-//     content: element.value.trim(),
-//   };
-//   // ...
-//   const parentContainer = titleElement.parentElement;
-//   parentContainer.insertAdjacentHTML(
-//     "afterbegin",
-//     '<i class="icon" data-lucide="circle-check"></i>'
-//   );
-//   // This works because lucide already has all the icons
-//   lucide.createIcons({ root: parentContainer });
-//   updateOutputArea();
-// }
+function checkForDuplicates(note) {
+  return myNotesList.some(
+    (n) => n.title === note.title && n.content === note.content
+    // (n) => n.title === note.title
+  );
+}
 
 function updateOutputArea() {
   const outputArea = document.getElementById("outputArea");
@@ -72,6 +64,7 @@ function toggleCheckbox(titleId, elementId) {
   const checkbox = document.getElementById(elementId);
   if (checkbox.checked) {
     addNote(titleId, elementId);
+
     // console.log("MY-NOTES-LIST", myNotesList);
   } else {
     // checkbox.checked = true;
@@ -90,6 +83,7 @@ function copyContents() {
     }
   );
 }
+
 function clearNotes() {
   myNotesList.length = 0; // Clear the array
   const outputArea = document.getElementById("outputArea");
@@ -97,11 +91,50 @@ function clearNotes() {
   // console.log("Notes cleared");
 }
 
-// Toggle box
-const toggleCheckboxElement = document.getElementById("verbatimCheckbox");
-toggleCheckboxElement.addEventListener("change", () => {
+// Event listeners for checkboxes ===========================================
+// Verbatim read checkbox
+const verbatimToggleCheckboxElement =
+  document.getElementById("verbatimCheckbox");
+verbatimToggleCheckboxElement.addEventListener("change", () => {
   toggleCheckbox("verbatimRead", "verbatimCheckbox");
 });
+
+// Is the account currently with an agent?
+const accountWithAgentYesCheckbox = document.getElementById(
+  "accountWithAgentyesCheckbox"
+);
+const accountWithAgentNoCheckbox = document.getElementById(
+  "accountWithAgentnoCheckbox"
+);
+//
+accountWithAgentYesCheckbox.addEventListener("change", () => {
+  toggleCheckbox("accountWithAgentTitle", "accountWithAgentyesCheckbox");
+  accountWithAgentNoCheckbox.checked = false;
+  // create check list
+  const parentContainer = document.getElementById(
+    "accountWithAgentTitle"
+  ).parentElement;
+  console.log("parentContainer: ", parentContainer);
+
+  //Create and append select list
+  var div = document.createElement("div");
+  div.innerHTML = `
+  <p>Please contact the agent and:</p>
+  <ul>
+    <li>Advise agent to place file on hold.</li>
+    <li>Obtain cost to date from agent.</li>
+  </ul>
+`;
+
+  div.classList.add("agent-check-container");
+  parentContainer.appendChild(div);
+});
+accountWithAgentNoCheckbox.addEventListener("change", () => {
+  // toggleCheckbox("isAccountWithAgentTitle", "accountWithAgentnoCheckbox");
+  accountWithAgentYesCheckbox.checked = false;
+  toggleCheckbox("accountWithAgentTitle", "accountWithAgentnoCheckbox");
+});
+// ==========================================================================
 
 // button event listeners
 const copyButton = document.getElementById("copyBtn");
@@ -307,4 +340,12 @@ whichIndustryButton.addEventListener("click", () => {
 const howManyDaysInput = document.getElementById("howManyDaysInput");
 howManyDaysInput.addEventListener("change", () => {
   addNote("howManyDaysTitle", "howManyDaysInput");
+});
+
+// Direct Debit on Hold button event listeners
+const directDebitOnHoldButton = document.getElementById(
+  "directDebitOnHoldButton"
+);
+directDebitOnHoldButton.addEventListener("click", () => {
+  addNote("directDebitOnHoldTitle", "directDebitOnHoldInput");
 });

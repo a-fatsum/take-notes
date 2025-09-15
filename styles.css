@@ -44,6 +44,11 @@ h1 {
   margin: 0;
 }
 
+.agent-check-container {
+  margin-top: 20px;
+  color: #dc2626;
+}
+
 /* Main sections layout */
 .sections {
   display: grid;
