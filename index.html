@@ -8,252 +8,267 @@
   </head>
   <body>
     <div id="wrapper">
-      <h1>Note Taking App</h1>
-
-      <div class="sections">
-        <div class="input-section">
-          <div class="container">
-            <div class="verbatim-container question-box">
-              <h3>Verbatim</h3>
-              <p>Please read the following text carefully:</p>
-              <!-- <div class="verbatim-text"> -->
-              <blockquote>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  non risus. Suspendisse lectus tortor, dignissim sit amet,
-                  adipiscing nec, ultricies sed, dolor. Cras elementum ultrices
-                  diam. <br />
-                  Maecenas ligula massa, varius a, semper congue, euismod non,
-                  mi. Proin porttitor, Cras elementum ultrices diam. Maecenas
-                  ligula massa, varius a, semper congue, euismod non, mi. Proin
-                  porttitor Cras elementum ultrices diam. Maecenas ligula massa,
-                  varius a, semper congue, euismod non, mi. <br />
-                  Proin porttitor Cras elementum ultrices diam. Maecenas ligula
-                  massa, varius a, semper congue, euismod non, mi. Proin
-                  porttitor
-                </p>
-              </blockquote>
-              <div class="container question-box">
-                <h3 id="verbatimRead">Verbatim read to the applicant?</h3>
-                <input
-                  class="checkbox"
-                  type="checkbox"
-                  id="verbatimCheckbox"
-                  name="verbatimCheckbox"
-                  value="Yes"
-                />
-                <label id="yesLabel" for="verbatimCheckbox">Yes</label>
+      <h1>Notes App</h1>
+      <div id="navButtons">
+        <ul>
+          <li id="financialAssistanceBtn" class="nav-btn">
+            Financial Assistance
+          </li>
+          <li id="defaultNoticesBtn" class="nav-btn">Default Notices</li>
+        </ul>
+        <!-- <button id="financialAssistanceBtn" class="nav-btn active">
+          Financial Assistance
+        </button>
+        <button id="defaultNoticesBtn" class="nav-btn">Default Notices</button> -->
+      </div>
+      <div id="main-container">
+        <!-- =========== =========== =========== === -->
+        <!-- =========== Financial Assistance =========== -->
+        <div id="financialAssistance" class="sections">
+          <div class="input-section">
+            <div class="container">
+              <div class="verbatim-container question-box">
+                <h3>Verbatim</h3>
+                <p>Please read the following text carefully:</p>
+                <!-- <div class="verbatim-text"> -->
+                <blockquote>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    non risus. Suspendisse lectus tortor, dignissim sit amet,
+                    adipiscing nec, ultricies sed, dolor. Cras elementum
+                    ultrices diam. <br />
+                    Maecenas ligula massa, varius a, semper congue, euismod non,
+                    mi. Proin porttitor, Cras elementum ultrices diam. Maecenas
+                    ligula massa, varius a, semper congue, euismod non, mi.
+                    Proin porttitor Cras elementum ultrices diam. Maecenas
+                    ligula massa, varius a, semper congue, euismod non, mi.
+                    <br />
+                    Proin porttitor Cras elementum ultrices diam. Maecenas
+                    ligula massa, varius a, semper congue, euismod non, mi.
+                    Proin porttitor
+                  </p>
+                </blockquote>
+                <div class="container question-box">
+                  <h3 id="verbatimRead">Verbatim read to the applicant?</h3>
+                  <input
+                    class="checkbox"
+                    type="checkbox"
+                    id="verbatimCheckbox"
+                    name="verbatimCheckbox"
+                    value="Yes"
+                  />
+                  <label id="yesLabel" for="verbatimCheckbox">Yes</label>
+                </div>
               </div>
-            </div>
 
-            <div class="question-box">
-              <div class="vehicle-insured-wrapper">
-                <h3 id="isVehicleCurrentlyInsuredTitle">
-                  Is the vehicle currently insured?
+              <div class="question-box">
+                <div class="vehicle-insured-wrapper">
+                  <h3 id="isVehicleCurrentlyInsuredTitle">
+                    Is the vehicle currently insured?
+                  </h3>
+                  <input
+                    class="checkbox"
+                    type="checkbox"
+                    id="insuredYesCheckbox"
+                    value="Yes"
+                  />
+                  <label for="insuredYesCheckbox">Yes</label>
+                  <input
+                    class="checkbox"
+                    type="checkbox"
+                    id="insuredNoCheckbox"
+                    value="No"
+                  />
+                  <label for="insuredNoCheckbox">No</label>
+                </div>
+
+                <div class="container is-vehicle-registered">
+                  <h3 id="isVehicleCurrentlyRegisteredTitle">
+                    Is the vehicle currently registered?
+                  </h3>
+                  <input
+                    class="checkbox"
+                    type="checkbox"
+                    id="registeredYesCheckbox"
+                    value="Yes"
+                  />
+                  <label for="registeredYesCheckbox">Yes</label>
+                  <input
+                    class="checkbox"
+                    type="checkbox"
+                    id="registeredNoCheckbox"
+                    value="No"
+                  />
+                  <label for="registeredNoCheckbox">No</label>
+                </div>
+              </div>
+
+              <div class="reasons-for-hardship question-box">
+                <h3
+                  id="reasonsForHardshipTitle"
+                  class="reason-for-hardship-title"
+                >
+                  Reasons for Hardship
+                </h3>
+                <textarea
+                  class="note-area"
+                  id="noteInput1"
+                  rows="6"
+                  cols="50"
+                  placeholder="Write your note here..."
+                ></textarea>
+                <button id="reasonsForHardshipButton" class="addNoteBtn">
+                  Add Note
+                </button>
+              </div>
+
+              <div class="question-box">
+                <h3 id="howManyMonthsTitle" class="expected-to-change-title">
+                  How many months do you expect this hardship to continue?
+                </h3>
+                <input
+                  class="small-input"
+                  type="text"
+                  placeholder="Months"
+                  id="howManyMonthsInput"
+                />
+                <button id="howManyMonthsButton" class="addNoteBtn smallButton">
+                  Add Note
+                </button>
+              </div>
+
+              <div class="reasons-for-hardship question-box">
+                <h3 id="expectedToChangeTitle" class="expected-to-change-title">
+                  What is expected to change?
+                </h3>
+                <textarea
+                  class="note-area"
+                  id="noteInput2"
+                  rows="6"
+                  cols="50"
+                  placeholder="Write your note here..."
+                ></textarea>
+                <button id="expectedToChangeButton" class="addNoteBtn">
+                  Add Note
+                </button>
+              </div>
+
+              <!--  -->
+              <!-- <div -->
+
+              <div class="question-box">
+                <h3 id="whichIndustryTitle" class="expected-to-change-title">
+                  Which industry are you in?
+                </h3>
+                <input
+                  class="small-input"
+                  type="text"
+                  placeholder="industry"
+                  id="whichIndustry"
+                />
+                <button id="whichIndustryButton" class="smallButton">
+                  Add Note
+                </button>
+              </div>
+
+              <div class="question-box">
+                <h3 id="howManyDaysTitle" class="">
+                  How many days is the account currently overdue by?
+                </h3>
+                <input
+                  class="small-input"
+                  type="text"
+                  placeholder="Days"
+                  id="howManyDaysInput"
+                />
+                <button id="howManyDaysButton" class="smallButton">
+                  Add Note
+                </button>
+              </div>
+
+              <div class="question-box">
+                <h3 id="directDebitOnHoldTitle" class="">
+                  Direct Debit on hold 30 days?
+                </h3>
+                <input
+                  class="small-input"
+                  type="text"
+                  placeholder="Yes/No - Manual Payment"
+                  id="directDebitOnHoldInput"
+                />
+                <button id="directDebitOnHoldButton" class="smallButton">
+                  Add Note
+                </button>
+              </div>
+
+              <!--  -->
+              <div class="question-box">
+                <h3 id="accountWithAgentTitle">
+                  Is the account currently with an agent?
                 </h3>
                 <input
                   class="checkbox"
                   type="checkbox"
-                  id="insuredYesCheckbox"
+                  id="accountWithAgentyesCheckbox"
                   value="Yes"
                 />
-                <label for="insuredYesCheckbox">Yes</label>
+                <label for="accountWithAgentyesCheckbox">Yes</label>
                 <input
                   class="checkbox"
                   type="checkbox"
-                  id="insuredNoCheckbox"
+                  id="accountWithAgentnoCheckbox"
                   value="No"
                 />
-                <label for="insuredNoCheckbox">No</label>
+                <label for="accountWithAgentnoCheckbox">No</label>
               </div>
-
-              <div class="container is-vehicle-registered">
-                <h3 id="isVehicleCurrentlyRegisteredTitle">
-                  Is the vehicle currently registered?
-                </h3>
-                <input
-                  class="checkbox"
-                  type="checkbox"
-                  id="registeredYesCheckbox"
-                  value="Yes"
-                />
-                <label for="registeredYesCheckbox">Yes</label>
-                <input
-                  class="checkbox"
-                  type="checkbox"
-                  id="registeredNoCheckbox"
-                  value="No"
-                />
-                <label for="registeredNoCheckbox">No</label>
-              </div>
+              <!--  -->
             </div>
+          </div>
+          <!--  -->
 
-            <div class="reasons-for-hardship question-box">
-              <h3
-                id="reasonsForHardshipTitle"
-                class="note-title reason-for-hardship-title"
-              >
-                Reasons for Hardship
-              </h3>
-              <textarea
-                class="note-area"
-                id="noteInput1"
-                rows="6"
-                cols="50"
-                placeholder="Write your note here..."
-              ></textarea>
-              <button id="reasonsForHardshipButton" class="addNoteBtn">
-                Add Note
-              </button>
+          <div class="output-section">
+            <h3>Your Notes:</h3>
+            <div id="outputArea">
+              <!-- <p>No notes available.</p> -->
             </div>
-
-            <div class="question-box">
-              <h3
-                id="howManyMonthsTitle"
-                class="note-title expected-to-change-title"
-              >
-                How many months do you expect this hardship to continue?
-              </h3>
-              <input
-                class="small-input"
-                type="text"
-                placeholder="Months"
-                id="howManyMonthsInput"
-              />
-              <button id="howManyMonthsButton" class="addNoteBtn smallButton">
-                Add Note
-              </button>
+            <div class="buttons">
+              <button id="copyBtn">Copy Notes</button>
+              <button id="clearBtn">Clear Notes</button>
             </div>
-
-            <div class="reasons-for-hardship question-box">
-              <h3
-                id="expectedToChangeTitle"
-                class="note-title expected-to-change-title"
-              >
-                What is expected to change?
-              </h3>
-              <textarea
-                class="note-area"
-                id="noteInput2"
-                rows="6"
-                cols="50"
-                placeholder="Write your note here..."
-              ></textarea>
-              <button id="expectedToChangeButton" class="addNoteBtn">
-                Add Note
-              </button>
-            </div>
-
-            <!--  -->
-            <!-- <div -->
-
-            <div class="question-box">
-              <h3
-                id="whichIndustryTitle"
-                class="note-title expected-to-change-title"
-              >
-                Which industry are you in?
-              </h3>
-              <input
-                class="small-input"
-                type="text"
-                placeholder="industry"
-                id="whichIndustry"
-              />
-              <button id="whichIndustryButton" class="smallButton">
-                Add Note
-              </button>
-            </div>
-
-            <div class="question-box">
-              <h3 id="howManyDaysTitle" class="note-title">
-                How many days is the account currently overdue by?
-              </h3>
-              <input
-                class="small-input"
-                type="text"
-                placeholder="Days"
-                id="howManyDaysInput"
-              />
-              <button id="howManyDaysButton" class="smallButton">
-                Add Note
-              </button>
-            </div>
-
-            <!-- <div class="question-box">
-              <h3 id="isDirectDebitOnHoldTitle">
-                Direct Debit on hold 30 days?
-              </h3>
-              <input
-                class="checkbox"
-                type="checkbox"
-                id="directDebitOnHoldYesCheckbox"
-                value="Yes"
-              />
-              <label for="directDebitOnHoldYesCheckbox">Yes</label>
-              <input
-                class="checkbox"
-                type="checkbox"
-                id="directDebitOnHoldNoCheckbox"
-                value="No"
-              />
-              <label for="directDebitOnHoldNoCheckbox">No</label>
-            </div> -->
-
-            <div class="question-box">
-              <h3 id="directDebitOnHoldTitle" class="note-title">
-                Direct Debit on hold 30 days?
-              </h3>
-              <input
-                class="small-input"
-                type="text"
-                placeholder="Yes/No - Manual Payment"
-                id="directDebitOnHoldInput"
-              />
-              <button id="directDebitOnHoldButton" class="smallButton">
-                Add Note
-              </button>
-            </div>
-
-            <!--  -->
-            <div class="question-box">
-              <h3 id="accountWithAgentTitle">
-                Is the account currently with an agent?
-              </h3>
-              <input
-                class="checkbox"
-                type="checkbox"
-                id="accountWithAgentyesCheckbox"
-                value="Yes"
-              />
-              <label for="accountWithAgentyesCheckbox">Yes</label>
-              <input
-                class="checkbox"
-                type="checkbox"
-                id="accountWithAgentnoCheckbox"
-                value="No"
-              />
-              <label for="accountWithAgentnoCheckbox">No</label>
-            </div>
-            <!--  -->
           </div>
         </div>
-        <!--  -->
 
-        <div class="output-section">
-          <h3>Your Notes:</h3>
-          <div id="outputArea">
-            <!-- <p>No notes available.</p> -->
-          </div>
-          <div class="buttons">
-            <button id="copyBtn">Copy Notes</button>
-            <button id="clearBtn">Clear Notes</button>
+        <!-- =========== =========== =========== === -->
+        <!-- =========== Default Notices =========== -->
+
+        <div id="defaultNotices" class="sections">
+          <div class="default-notices">
+            <h2>Default Notices</h2>
+            <div class="notice">
+              <h3>Notice 1</h3>
+              <p>
+                This is the content of Notice 1. It provides important
+                information regarding the application process.
+              </p>
+            </div>
+            <div class="notice">
+              <h3>Notice 2</h3>
+              <p>
+                This is the content of Notice 2. Please read it carefully to
+                understand the terms and conditions.
+              </p>
+            </div>
+            <div class="notice">
+              <h3>Notice 3</h3>
+              <p>
+                This is the content of Notice 3. It outlines the
+                responsibilities of both parties involved.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      <!--  -->
     </div>
-
     <!-- script references -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script type="module" src="script.js"></script>

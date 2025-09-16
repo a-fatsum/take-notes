@@ -55,7 +55,10 @@ function checkForDuplicates(note) {
 function updateOutputArea() {
   const outputArea = document.getElementById("outputArea");
   outputArea.innerHTML = myNotesList
-    .map((n) => `<p>${n.title}</p><p>${n.content}</p>`)
+    .map(
+      (n) =>
+        `<p class="note-title">${n.title}</p><p class="note-content">${n.content}</p>`
+    )
     .join("");
 }
 
@@ -91,6 +94,36 @@ function clearNotes() {
   // console.log("Notes cleared");
 }
 
+// Clear Input fields
+function clearInputFields() {
+  const inputs = document.querySelectorAll("input[type='text'], textarea");
+  const checkboxes = document.querySelectorAll("input[type='checkbox']");
+  // Clear checkboxes
+  checkboxes.forEach((checkbox) => (checkbox.checked = false));
+  // Clear text inputs and textareas
+  inputs.forEach((input) => (input.value = ""));
+  // Clear highlights and icons
+  const highlightedElements = document.querySelectorAll(".highlight");
+  highlightedElements.forEach((el) => {
+    el.classList.remove("highlight");
+    const icon = el.querySelector(".icon");
+    if (icon) {
+      icon.remove();
+    }
+  });
+}
+
+// Clear button functionality
+function clearNotesAndInputs() {
+  // confirm before clearing
+  const confirmClear = confirm(
+    "Are you sure you want to clear all notes and inputs?"
+  );
+  if (!confirmClear) return;
+  clearNotes();
+  clearInputFields();
+}
+
 // Event listeners for checkboxes ===========================================
 // Verbatim read checkbox
 const verbatimToggleCheckboxElement =
@@ -114,8 +147,6 @@ accountWithAgentYesCheckbox.addEventListener("change", () => {
   const parentContainer = document.getElementById(
     "accountWithAgentTitle"
   ).parentElement;
-  console.log("parentContainer: ", parentContainer);
-
   //Create and append select list
   var div = document.createElement("div");
   div.innerHTML = `
@@ -127,7 +158,18 @@ accountWithAgentYesCheckbox.addEventListener("change", () => {
 `;
 
   div.classList.add("agent-check-container");
-  parentContainer.appendChild(div);
+  const existingDiv = document.querySelector(".agent-check-container");
+
+  if (accountWithAgentYesCheckbox.checked && !existingDiv) {
+    parentContainer.appendChild(div);
+    console.log(
+      "accountWithAgentYesCheckbox.checked",
+      accountWithAgentYesCheckbox.checked
+    );
+  }
+  // else {
+  //   document.querySelector(".agent-check-container")?.remove();
+  // }
 });
 accountWithAgentNoCheckbox.addEventListener("change", () => {
   // toggleCheckbox("isAccountWithAgentTitle", "accountWithAgentnoCheckbox");
@@ -140,7 +182,7 @@ accountWithAgentNoCheckbox.addEventListener("change", () => {
 const copyButton = document.getElementById("copyBtn");
 copyButton.addEventListener("click", copyContents);
 const clearButton = document.getElementById("clearBtn");
-clearButton.addEventListener("click", clearNotes);
+clearButton.addEventListener("click", clearNotesAndInputs);
 //
 // expectedToChangeButton
 const expectedToChangeButton = document.getElementById(
@@ -250,50 +292,40 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
         switch (selectedState) {
           case "NSW":
             window.open(
-              "https://www.service.nsw.gov.au/transaction/renew-vehicle-registration",
-              "_blank"
+              "https://www.service.nsw.gov.au/transaction/check-a-vehicle-registration"
             );
             break;
           case "QLD":
             window.open(
-              "https://www.qld.gov.au/transport/registration/renew",
-              "_blank"
+              "https://www.service.transport.qld.gov.au/checkrego/application/TermAndConditions.xhtml?dswid=9682"
             );
             break;
           case "SA":
             window.open(
-              "https://www.sa.gov.au/topics/driving-and-transport/vehicles-and-registration/renew-your-registration",
-              "_blank"
+              "https://account.ezyreg.sa.gov.au/account/check-registration.htm"
             );
             break;
           case "TAS":
-            window.open(
-              "https://www.transport.tas.gov.au/registration/renewing_your_registration",
-              "_blank"
-            );
+            window.open("https://www.transport.tas.gov.au/rego-status/search");
             break;
           case "VIC":
             window.open(
-              "https://www.vicroads.vic.gov.au/registration/renew-or-cancel-your-registration/renew-your-registration",
-              "_blank"
+              "https://www.vicroads.vic.gov.au/registration/buy-sell-or-transfer-a-vehicle/check-vehicle-registration/vehicle-registration-enquiry"
             );
             break;
           case "WA":
             window.open(
-              "https://www.transport.wa.gov.au/registration/renew-your-registration.asp",
-              "_blank"
+              "https://online.transport.wa.gov.au/webExternal/registration/;jsessionid=A0RRcQb59ymT3J8bqd4jw4sO6n_C4BwQsOqv-m-AsVKEogS6UQPQ!-470103551!-613352842?0"
             );
             break;
           case "ACT":
             window.open(
-              "https://www.accesscanberra.act.gov.au/app/answers/detail/a_id/2085/~/vehicle-registration-renewals",
-              "_blank"
+              "https://rego.act.gov.au/regosoawicket/public/reg/FindRegistrationPage?0"
             );
             break;
           case "NT":
             window.open(
-              "https://nt.gov.au/driving/registration/renew-your-vehicle-registration",
-              "_blank"
+              "https://nt.gov.au/driving/rego/existing-nt-registration/rego-check"
             );
             break;
           default:
@@ -327,6 +359,13 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
     });
     //
   }
+  // Clear state registration elements if "No" is selected
+  else {
+    document.getElementById("stateSelect")?.remove();
+    document.getElementById("stateOfRegistrationTitle")?.remove();
+    document.getElementById("regoInfoInput")?.remove();
+    document.getElementById("regoInfoButton")?.remove();
+  }
 });
 //
 
@@ -349,3 +388,6 @@ const directDebitOnHoldButton = document.getElementById(
 directDebitOnHoldButton.addEventListener("click", () => {
   addNote("directDebitOnHoldTitle", "directDebitOnHoldInput");
 });
+
+// ============ Tab Navigation ===================================
+// Navigate between tabs

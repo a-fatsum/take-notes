@@ -14,6 +14,49 @@ body {
   padding: 20px;
 }
 
+#navButtons ul {
+  display: flex;
+  position: relative;
+  display: none;
+}
+
+.nav-btn {
+  background: #6972db2e;
+  color: #1e293b;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: 1rem;
+}
+
+#main-container {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 1rem;
+}
+
+#defaultNotices {
+  position: absolute;
+  display: none;
+}
+
+#financialAssistance {
+  /*  */
+  /* display: none; */
+}
+
+.hide {
+  display: none;
+}
+.active {
+  background: rgb(51, 0, 255);
+  color: white;
+} /* highlight active tab */
+
 /* Icons */
 .icon {
   width: 1.7em;
@@ -58,12 +101,13 @@ h1 {
 }
 
 .input-section {
-  padding: 2rem;
+  margin: 1rem;
   background: #ffffff;
   border-right: 1px solid #e2e8f0;
 }
 
 .output-section {
+  margin: 1rem;
   padding: 2rem;
   background: #f8fafc;
 }
@@ -119,7 +163,7 @@ h3 {
 
 p {
   margin-bottom: 1rem;
-  color: #64748b;
+  color: #006aff;
 }
 
 /* Blockquote styling */
@@ -360,4 +404,22 @@ button:active {
   background-color: #667eea;
   color: white;
   text-align: center;
+}
+
+/* Output */
+.note-title {
+  font-weight: bold;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #1e293b;
+  font-family: "Courier New", Courier, monospace;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+.note-content {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #4b5563;
+  font-family: "Courier New", Courier, monospace;
+  /* font-family: Arial, Helvetica, sans-serif; */
 }
