@@ -16,10 +16,6 @@
           </li>
           <li id="defaultNoticesBtn" class="nav-btn">Default Notices</li>
         </ul>
-        <!-- <button id="financialAssistanceBtn" class="nav-btn active">
-          Financial Assistance
-        </button>
-        <button id="defaultNoticesBtn" class="nav-btn">Default Notices</button> -->
       </div>
       <div id="main-container">
         <!-- =========== =========== =========== === -->
@@ -33,12 +29,21 @@
                 <!-- <div class="verbatim-text"> -->
                 <blockquote>
                   <p>
-                    Based on the consumer credit reporting requirements, your consumer credit file will reflect if your account is more than 14 days overdue. If we approve a financial hardship variation, then your consumer credit file may show that you were in financial hardship. <br />
-                    If your hardship application is declined or withdrawn, your consumer credit file may show your account as overdue.
-                    <br />
-                    Please note that should your request for financial assistance be approved that additional interest will accrue during your deferral or reduced repayment period, and this will be capitalized over the remaining term.
-
-Details of the additional costs associated with the assistance will be available on the variation document if approval is granted.
+                    Based on the consumer credit reporting requirements, your
+                    consumer credit file will reflect if your account is more
+                    than 14 days overdue. If we approve a financial hardship
+                    variation, then your consumer credit file may show that you
+                    were in financial hardship. <br /><br />
+                    If your hardship application is declined or withdrawn, your
+                    consumer credit file may show your account as overdue.
+                    <br /><br />
+                    Please note that should your request for financial
+                    assistance be approved that additional interest will accrue
+                    during your deferral or reduced repayment period, and this
+                    will be capitalized over the remaining term.<br />
+                    <br />Details of the additional costs associated with the
+                    assistance will be available on the variation document if
+                    approval is granted.
                   </p>
                 </blockquote>
                 <div class="container question-box">
@@ -105,7 +110,7 @@ Details of the additional costs associated with the assistance will be available
                 </h3>
                 <textarea
                   class="note-area"
-                  id="noteInput1"
+                  id="reasonForHardshipInput"
                   rows="6"
                   cols="50"
                   placeholder="Write your note here..."
@@ -147,7 +152,6 @@ Details of the additional costs associated with the assistance will be available
               </div>
 
               <!--  -->
-              <!-- <div -->
 
               <div class="question-box">
                 <h3 id="whichIndustryTitle" class="expected-to-change-title">
@@ -222,7 +226,7 @@ Details of the additional costs associated with the assistance will be available
           <div class="output-section">
             <h3>Your Notes:</h3>
             <div id="outputArea">
-              <!-- <p>No notes available.</p> -->
+              <!-- Dynamically created notes go here -->
             </div>
             <div class="buttons">
               <button id="copyBtn">Copy Notes</button>

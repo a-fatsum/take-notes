@@ -414,11 +414,13 @@ button:active {
 /* Output */
 .note-title {
   font-weight: bold;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   font-size: 1rem;
   color: #1e293b;
   font-family: "Courier New", Courier, monospace;
   /* font-family: Arial, Helvetica, sans-serif; */
+
+  margin: 0 0 1em 0; /* bottom margin = one blank line */
 }
 
 .note-content {

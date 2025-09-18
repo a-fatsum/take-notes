@@ -16,13 +16,14 @@ function addNote(titleId, elementId) {
   };
 
   // Check if note already exists
-  // const exists = myNotesList.some(
-  //   (n) => n.title === note.title && n.content === note.content
-  // );
+  const exists = myNotesList.some(
+    (n) => n.title === note.title
+    // && n.content === note.content
+  );
 
-  const exists = checkForDuplicates(note);
+  // const exists = checkForDuplicates(note);
 
-  //
+  // //
   if (!exists) {
     myNotesList.push(note);
   }
@@ -38,28 +39,24 @@ function addNote(titleId, elementId) {
     );
     lucide.createIcons({ root: parentContainer });
   }
-
   // check if icon already exists
-
   // Update the output area
   updateOutputArea();
 }
 
-function checkForDuplicates(note) {
-  return myNotesList.some(
-    (n) => n.title === note.title && n.content === note.content
-    // (n) => n.title === note.title
-  );
-}
+// function checkForDuplicates(note) {
+//   return myNotesList.some(
+//     (n) => n.title === note.title && n.content === note.content
+//     // (n) => n.title === note.title
+//   );
+// }
 
 function updateOutputArea() {
   const outputArea = document.getElementById("outputArea");
-  outputArea.innerHTML = myNotesList
-    .map(
-      (n) =>
-        `<p class="note-title">${n.title}</p><p class="note-content">${n.content}</p>`
-    )
-    .join("");
+  outputArea.innerHTML = myNotesList.map(
+    (n) => `<p class="note-title">${n.title}: ${n.content}</p>`
+  );
+  // .join("");
 }
 
 // console.log("MY-NOTES-LIST", myNotesList);
@@ -121,6 +118,12 @@ function clearNotesAndInputs() {
   if (!confirmClear) return;
   clearNotes();
   clearInputFields();
+}
+
+// Check if the input field is empty
+function isInputEmpty(inputId) {
+  const inputValue = document.getElementById(inputId).value;
+  return inputValue;
 }
 
 // Event listeners for checkboxes ===========================================
@@ -188,6 +191,10 @@ const expectedToChangeButton = document.getElementById(
   "expectedToChangeButton"
 );
 expectedToChangeButton.addEventListener("click", (e) => {
+  if (isInputEmpty("noteInput2") === "") {
+    alert("Please enter expected changes before adding to notes.");
+    return;
+  }
   addNote("expectedToChangeTitle", "noteInput2");
 });
 
@@ -196,12 +203,20 @@ const reasonsForHardshipButton = document.getElementById(
   "reasonsForHardshipButton"
 );
 reasonsForHardshipButton.addEventListener("click", () => {
-  addNote("reasonsForHardshipTitle", "noteInput1");
+  if (isInputEmpty("reasonForHardshipInput") === "") {
+    alert("Please enter reasons for hardship before adding to notes.");
+    return;
+  }
+  addNote("reasonsForHardshipTitle", "reasonForHardshipInput");
 });
 
 // How many months button
 const howManyMonthsButton = document.getElementById("howManyMonthsButton");
 howManyMonthsButton.addEventListener("click", () => {
+  if (isInputEmpty("howManyMonthsInput") === "") {
+    alert("Please enter how many months before adding to notes.");
+    return;
+  }
   addNote("howManyMonthsTitle", "howManyMonthsInput");
 });
 
@@ -279,7 +294,6 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
     parentContainer.insertBefore(title, selectList);
 
     // add event listener to the select list
-
     selectList.addEventListener("change", () => {
       const selectedState = selectList.value;
       addNote("stateOfRegistrationTitle", "stateSelect");
@@ -330,23 +344,33 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
       }
       // Create input field for registration info
       if (!document.getElementById("regoInfoInput")) {
+        //
+        var regoInfoTitle = document.createElement("h3");
+        regoInfoTitle.id = "regoInfoTitle";
+        regoInfoTitle.innerHTML = "Registration Information";
+        parentContainer.appendChild(regoInfoTitle);
+      }
+      // Create button to add rego info to notes
+      if (!document.getElementById("regoInfoButton")) {
         var input = document.createElement("input");
         input.type = "text";
         input.id = "regoInfoInput";
         input.placeholder = "Enter registration details here";
         input.classList.add("small-input");
         parentContainer.appendChild(input);
-      }
-      // Create button to add rego info to notes
-      if (!document.getElementById("regoInfoButton")) {
+        //
+
         var button = document.createElement("button");
-        button.id = "regoInfoButton";
         button.innerHTML = "Add Rego Info";
         button.classList.add("smallButton");
         parentContainer.appendChild(button);
         // Add event listener to button
         button.addEventListener("click", () => {
-          addNote("stateOfRegistrationTitle", "regoInfoInput");
+          if (isInputEmpty("regoInfoInput") === "") {
+            alert("Please enter registration details before adding to notes.");
+            return;
+          }
+          addNote("regoInfoTitle", "regoInfoInput");
           // document.getElementById("regoInfoInput").value = "";
         });
       }
@@ -366,12 +390,21 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
 // Which industry are you in?
 const whichIndustryButton = document.getElementById("whichIndustryButton");
 whichIndustryButton.addEventListener("click", () => {
+  if (isInputEmpty("whichIndustry") === "") {
+    alert("Please enter industry before adding to notes.");
+    return;
+  }
   addNote("whichIndustryTitle", "whichIndustry");
 });
 
 // How many days is the account currently overdue by?
-const howManyDaysInput = document.getElementById("howManyDaysInput");
-howManyDaysInput.addEventListener("change", () => {
+// const howManyDaysInput = document.getElementById("howManyDaysInput");
+const howManyDaysButton = document.getElementById("howManyDaysButton");
+howManyDaysButton.addEventListener("click", () => {
+  if (isInputEmpty("howManyDaysInput") === "") {
+    alert("Please enter how many days before adding to notes.");
+    return;
+  }
   addNote("howManyDaysTitle", "howManyDaysInput");
 });
 
@@ -380,6 +413,10 @@ const directDebitOnHoldButton = document.getElementById(
   "directDebitOnHoldButton"
 );
 directDebitOnHoldButton.addEventListener("click", () => {
+  if (isInputEmpty("directDebitOnHoldInput") === "") {
+    alert("Please enter payment details before adding to notes.");
+    return;
+  }
   addNote("directDebitOnHoldTitle", "directDebitOnHoldInput");
 });
 
