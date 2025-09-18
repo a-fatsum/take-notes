@@ -11,16 +11,16 @@
       <h1>Notes App</h1>
       <div id="navButtons">
         <ul>
-          <li id="financialAssistanceBtn" class="nav-btn">
+          <li id="financialAssistanceNavBtn" class="nav-btn">
             Financial Assistance
           </li>
-          <li id="defaultNoticesBtn" class="nav-btn">Default Notices</li>
+          <li id="defaultNoticesNavBtn" class="nav-btn">Default Notices</li>
         </ul>
       </div>
       <div id="main-container">
         <!-- =========== =========== =========== === -->
         <!-- =========== Financial Assistance =========== -->
-        <div id="financialAssistance" class="sections">
+        <div id="financialAssistanceTab" class="tabs">
           <div class="input-section">
             <div class="container">
               <div class="verbatim-container question-box">
@@ -115,7 +115,7 @@
                   cols="50"
                   placeholder="Write your note here..."
                 ></textarea>
-                <button id="reasonsForHardshipButton" class="addNoteBtn">
+                <button id="reasonsForHardshipButton" class=" smallButton">
                   Add Note
                 </button>
               </div>
@@ -130,7 +130,7 @@
                   placeholder="Months"
                   id="howManyMonthsInput"
                 />
-                <button id="howManyMonthsButton" class="addNoteBtn smallButton">
+                <button id="howManyMonthsButton" class=" smallButton">
                   Add Note
                 </button>
               </div>
@@ -146,7 +146,7 @@
                   cols="50"
                   placeholder="Write your note here..."
                 ></textarea>
-                <button id="expectedToChangeButton" class="addNoteBtn">
+                <button id="expectedToChangeButton" class=" smallButton">
                   Add Note
                 </button>
               </div>
@@ -163,7 +163,7 @@
                   placeholder="industry"
                   id="whichIndustry"
                 />
-                <button id="whichIndustryButton" class="smallButton">
+                <button id="whichIndustryButton" class="smallButton ">
                   Add Note
                 </button>
               </div>
@@ -238,29 +238,22 @@
         <!-- =========== =========== =========== === -->
         <!-- =========== Default Notices =========== -->
 
-        <div id="defaultNotices" class="sections">
-          <div class="default-notices">
-            <h2>Default Notices</h2>
+        <div id="defaultNoticesTab" class="tabs">
+          <div class="default-notices question-box">
+            <!-- <h2>Default Notices</h2> -->
             <div class="notice">
-              <h3>Notice 1</h3>
-              <p>
-                This is the content of Notice 1. It provides important
-                information regarding the application process.
+              <h3>7 Days DFN</h3>
+              <p id="7DaysDFNParagraph">7 Days DFN issued on <span id="7DaysDFNDate"></span> - for $<input type="text" class="small-input" id="7DaysDFNAmount"></input> - Valid until <span id="7DaysDFNExpiryDate"></span> - including postage <span id="7DaysDFNExpiryDatePostage"></span>.
               </p>
+              <button class="smallButton" id="copy7DaysDFNButton">Copy Note</button>
             </div>
+
             <div class="notice">
-              <h3>Notice 2</h3>
-              <p>
-                This is the content of Notice 2. Please read it carefully to
-                understand the terms and conditions.
+              <h3>30 Days DFN</h3>
+              <p id="30DaysDFNParagraph">30 Days DFN issued on <span id="30DaysDFNDate"></span> - for $<input type="text" class="small-input" id="30DaysDFNAmount"></input> - Valid until <span id="30DaysDFNExpiryDate"></span> - including postage<span id="30DaysDFNExpiryDatePostage"></span>.</br />Included a Payout Quote for $<input type="text" class="small-input" id="30DaysDFNPayoutQuote"></input> valid until <span id="30DaysDFNPayoutQuoteExpiryDate">PLACE_HOLDER</span>.
               </p>
-            </div>
-            <div class="notice">
-              <h3>Notice 3</h3>
-              <p>
-                This is the content of Notice 3. It outlines the
-                responsibilities of both parties involved.
-              </p>
+              <!-- <p>Included a Payout Quote for <input type="text" class="small-input" id="30DaysDFNPayoutQuote"></input> valid until <span id="30DaysDFNPayoutQuoteExpiryDate"></span>.</p> -->
+              <button class="smallButton" id="copy30DaysDFNButton">Copy Note</button>
             </div>
           </div>
         </div>
@@ -268,6 +261,7 @@
     </div>
     <!-- script references -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="hardshipScript.js"></script>
+    <script type="module" src="defaultNoticesScript.js"></script>
   </body>
 </html>

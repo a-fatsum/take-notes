@@ -1,8 +1,6 @@
 import { createIcons, icons } from "https://cdn.skypack.dev/lucide";
 createIcons({ icons });
 
-// document.body.append('<i data-lucide="circle-x"></i>');
-
 const myNotesList = [];
 
 // write function to add to myNotesList array
@@ -70,19 +68,28 @@ function toggleCheckbox(titleId, elementId) {
   }
 }
 // function to copy contents of outputArea to clipboard
-function copyContents() {
-  const outputArea = document.getElementById("outputArea");
-  const textToCopy = outputArea.innerText;
+export function copyContents(outputAreaId) {
+  const outputArea = document.getElementById(outputAreaId);
+
+  // Clone the paragraph so we can manipulate it without touching the DOM
+  const clone = outputArea.cloneNode(true);
+
+  // Replace all inputs inside the clone with their values
+  clone.querySelectorAll("input").forEach((input) => {
+    const textNode = document.createTextNode(input.value || "[blank]");
+    input.replaceWith(textNode);
+  });
+
+  // Now the clone has the correct text (with input values inserted)
+  const textToCopy = clone.innerText;
+
   navigator.clipboard.writeText(textToCopy).then(
-    function () {
-      alert("Notes copied to clipboard!");
-    },
-    function (err) {
-      console.error("Could not copy text: ", err);
-    }
+    () => alert("Notes copied to clipboard!"),
+    (err) => console.error("Could not copy text: ", err)
   );
 }
 
+// Clear notes function
 function clearNotes() {
   myNotesList.length = 0; // Clear the array
   const outputArea = document.getElementById("outputArea");
@@ -182,7 +189,7 @@ accountWithAgentNoCheckbox.addEventListener("change", () => {
 
 // button event listeners
 const copyButton = document.getElementById("copyBtn");
-copyButton.addEventListener("click", copyContents);
+copyButton.addEventListener("click", () => copyContents("outputArea"));
 const clearButton = document.getElementById("clearBtn");
 clearButton.addEventListener("click", clearNotesAndInputs);
 //
@@ -361,7 +368,7 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
         //
 
         var button = document.createElement("button");
-        button.innerHTML = "Add Rego Info";
+        button.innerHTML = "Add Note";
         button.classList.add("smallButton");
         parentContainer.appendChild(button);
         // Add event listener to button
