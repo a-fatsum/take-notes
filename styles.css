@@ -119,12 +119,17 @@ h1 {
   font-family: "Courier New", Courier, monospace;
 }
 /* Container styling */
-.container {
-  margin-bottom: 2rem;
+.rego-info-input {
+  /* margin-bottom: 2rem; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* gap: 20px; */
+  /* background-color: red; */
+  /* align-items: flex-start; */
 }
 
-.is-vehicle-registered {
-}
+/* .is-vehicle-registered {
+} */
 .rego-info-input {
   display: flex;
   align-items: center;
@@ -349,7 +354,7 @@ button:active {
 }
 
 .smallButton {
-  width: 100px;
+  width: 200px;
   padding: 0.5rem;
   border: 2px solid #e2e8f0;
   background: #10b981;

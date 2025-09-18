@@ -67,7 +67,6 @@ function toggleCheckbox(titleId, elementId) {
   const checkbox = document.getElementById(elementId);
   if (checkbox.checked) {
     addNote(titleId, elementId);
-
     // console.log("MY-NOTES-LIST", myNotesList);
   } else {
     // checkbox.checked = true;
@@ -217,7 +216,6 @@ vehicleCurrentlyInsuredYesCheckbox.addEventListener("change", () => {
   vehicleCurrentlyInsuredNoCheckbox.checked = false;
 });
 vehicleCurrentlyInsuredNoCheckbox.addEventListener("change", () => {
-  // toggleCheckbox("isVehicleCurrentlyInsuredTitle", "insuredNoCheckbox");
   vehicleCurrentlyInsuredYesCheckbox.checked = false;
   alert(
     "Vehicle is not insured. Inform the customer that they are in breach of the conditions of their contract."
@@ -234,7 +232,6 @@ const vehicleCurrentlyRegisteredNoCheckbox = document.getElementById(
 //
 
 vehicleCurrentlyRegisteredNoCheckbox.addEventListener("change", () => {
-  // toggleCheckbox("isVehicleCurrentlyRegisteredTitle", "registeredNoCheckbox");
   vehicleCurrentlyRegisteredYesCheckbox.checked = false;
   document.getElementById("stateSelect")?.remove();
   document.getElementById("stateOfRegistrationTitle")?.remove();
@@ -285,7 +282,6 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
 
     selectList.addEventListener("change", () => {
       const selectedState = selectList.value;
-      // console.log("Selected state: ", selectedState);
       addNote("stateOfRegistrationTitle", "stateSelect");
       // add a link to the registration info page
       if (selectedState !== "Select") {
@@ -331,29 +327,27 @@ vehicleCurrentlyRegisteredYesCheckbox.addEventListener("change", () => {
           default:
             break;
         }
-
-        // Create and append rego information input box
-        var regoInfoInput = document.createElement("input");
-        regoInfoInput.type = "text";
-        regoInfoInput.id = "regoInfoInput";
-        regoInfoInput.classList.add("small-input");
-        regoInfoInput.placeholder = "Enter Rego Expiry Date";
-        // Style the input box
-        regoInfoInput.classList.add("rego-info-input");
-        parentContainer.appendChild(regoInfoInput);
-
-        // Create and append button
-        var regoInfoButton = document.createElement("button");
-        regoInfoButton.id = "regoInfoButton";
-        regoInfoButton.innerHTML = "Add Rego Info";
-        regoInfoButton.classList.add("addNoteBtn");
-        parentContainer.appendChild(regoInfoButton);
-
+      }
+      // Create input field for registration info
+      if (!document.getElementById("regoInfoInput")) {
+        var input = document.createElement("input");
+        input.type = "text";
+        input.id = "regoInfoInput";
+        input.placeholder = "Enter registration details here";
+        input.classList.add("small-input");
+        parentContainer.appendChild(input);
+      }
+      // Create button to add rego info to notes
+      if (!document.getElementById("regoInfoButton")) {
+        var button = document.createElement("button");
+        button.id = "regoInfoButton";
+        button.innerHTML = "Add Rego Info";
+        button.classList.add("smallButton");
+        parentContainer.appendChild(button);
         // Add event listener to button
-        regoInfoButton.addEventListener("click", () => {
+        button.addEventListener("click", () => {
           addNote("stateOfRegistrationTitle", "regoInfoInput");
-          // clear the input box
-          regoInfoInput.value = "";
+          // document.getElementById("regoInfoInput").value = "";
         });
       }
     });
