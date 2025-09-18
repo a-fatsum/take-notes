@@ -51,10 +51,9 @@ function addNote(titleId, elementId) {
 
 function updateOutputArea() {
   const outputArea = document.getElementById("outputArea");
-  outputArea.innerHTML = myNotesList.map(
-    (n) => `<p class="note-title">${n.title}: ${n.content}</p>`
-  );
-  // .join("");
+  outputArea.innerHTML = myNotesList
+    .map((n) => `<p class="note-title">${n.title}: ${n.content}</p>`)
+    .join("");
 }
 
 // console.log("MY-NOTES-LIST", myNotesList);
