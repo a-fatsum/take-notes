@@ -84,6 +84,8 @@ function handleTodoActions(e) {
   const deleteButtons = todoBox.querySelectorAll(".delete-button");
   deleteButtons.forEach((deleteButton) => {
     deleteButton.addEventListener("click", (e) => {
+      // const confirmClear = confirm("Are you sure?");
+      // if (!confirmClear) return;
       //
       deleteButton.parentElement.remove();
       myToDoList = myToDoList.filter((item) => {
