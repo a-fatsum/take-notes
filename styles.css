@@ -72,6 +72,15 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: auto;
+}
+
 .agent-check-container {
   margin-top: 20px;
   color: #dc2626;
@@ -453,7 +462,6 @@ button:active {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  /* width: 100%; */
   padding: 1.5rem;
   margin: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -474,4 +482,52 @@ button:active {
   resize: vertical;
   transition: border-color 0.2s ease;
   margin-bottom: 1rem; /* Added margin bottom to create space for the add note button */
+}
+
+.todo-item {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e2e8f0;
+  width: 50%;
+  gap: 1rem;
+}
+
+.delete-button {
+  background: #ef4444;
+  width: 100px;
+  max-width: 100px;
+  text-align: center;
+  /* width: 100%; */
+  padding: 0.5rem;
+  border: 2px solid #e2e8f0;
+  /* background: #10b981; */
+  color: white;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: border-color 0.2s ease;
+  /* margin-left: 0.5rem; */
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  /* align-self: flex-end; */
+}
+
+.todo-label {
+  font-size: 1rem;
+  color: #374151;
+  flex: 1;
+}
+
+.todo-checkbox {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+  accent-color: #10b981;
+}
+.todo-checkbox:checked + .todo-label {
+  text-decoration: line-through;
+  color: #9ca3af;
 }

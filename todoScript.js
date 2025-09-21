@@ -1,6 +1,15 @@
-let myToDoList = [];
-const todoBox = document.querySelector(".todoBox");
+// todoScript.js
+// ============ To-Do Tab ===================================
 
+// Import icons
+import { createIcons, icons } from "https://cdn.skypack.dev/lucide";
+createIcons({ icons });
+
+const todoBox = document.querySelector(".todoBox");
+let myToDoList = [];
+// Insert the icon before the h2 element
+
+//
 const todoInput = document.createElement("input");
 todoInput.type = "text";
 todoInput.placeholder = "Enter a new to-do item";
@@ -14,7 +23,6 @@ todoBox.appendChild(todoInput);
 todoBox.appendChild(addButton);
 
 // Function to update the displayed to-do list
-
 function updateToDoList() {
   if (todoInput.value.trim() === "") {
     return; // Ignore empty input
@@ -25,7 +33,6 @@ function updateToDoList() {
     text: todoInput.value.trim(),
     completed: false,
   };
-
   // Add the new item to the list
   myToDoList.push(newTodoItem);
   // renderToDoItems();
@@ -34,18 +41,16 @@ function updateToDoList() {
 
 // Container to hold the to-do items
 function renderToDoItems() {
-  // Clear the existing list
-
   // Render each to-do item
   myToDoList.forEach((item) => {
     const todoItem = document.createElement("div");
     todoItem.classList.add("todo-item");
     todoItem.innerHTML = `
-      <input type="checkbox" id="todo-${item.id}" ${
+      <button class="delete-button" data-id="${item.id}">Delete</button>
+      <input class="todo-checkbox" type="checkbox" id="todo-${item.id}" ${
       item.completed ? "checked" : ""
     }>
-      <label for="todo-${item.id}">${item.text}</label>
-      <button class="delete-button" data-id="${item.id}">Delete</button>
+      <label class="todo-label" for="todo-${item.id}">${item.text}</label>
     `;
     // check for duplicates before adding
     const existingItem = todoBox.querySelector(`input[id="todo-${item.id}"]`);
