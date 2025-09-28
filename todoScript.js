@@ -5,43 +5,32 @@
 import { createIcons, icons } from "https://cdn.skypack.dev/lucide";
 createIcons({ icons });
 
+// Main container
 const todoBox = document.querySelector(".todoBox");
-let myToDoList = [];
-// Insert the icon before the h2 element
 
-//
+// App state: array of to-do objects
+let myToDoList = [];
+
+// ========== Input + Button UI ==========
 const todoInput = document.createElement("input");
 todoInput.type = "text";
 todoInput.placeholder = "Enter a new to-do item";
 todoInput.classList.add("todo-input");
 
 const addButton = document.createElement("button");
-addButton.innerHTML = "Add";
+addButton.textContent = "Add"; // 🔄 changed: safer than innerHTML
 addButton.classList.add("smallButton");
 
 todoBox.appendChild(todoInput);
 todoBox.appendChild(addButton);
 
-// Function to update the displayed to-do list
-function updateToDoList() {
-  if (todoInput.value.trim() === "") {
-    return; // Ignore empty input
-  }
-  // Create a new to-do item object
-  const newTodoItem = {
-    id: Date.now(),
-    text: todoInput.value.trim(),
-    completed: false,
-  };
-  // Add the new item to the list
-  myToDoList.push(newTodoItem);
-  // renderToDoItems();
-  todoInput.value = ""; // Clear input field
-}
-
-// Container to hold the to-do items
+// ========== Render To-Do Items ==========
 function renderToDoItems() {
-  // Render each to-do item
+  // 🔄 changed: clear list before rendering (prevents duplicates)
+  const oldItems = todoBox.querySelectorAll(".todo-item");
+  oldItems.forEach((el) => el.remove());
+
+  // Render each item
   myToDoList.forEach((item) => {
     const todoItem = document.createElement("div");
     todoItem.classList.add("todo-item");
@@ -52,57 +41,56 @@ function renderToDoItems() {
     }>
       <label class="todo-label" for="todo-${item.id}">${item.text}</label>
     `;
-    // check for duplicates before adding
-    const existingItem = todoBox.querySelector(`input[id="todo-${item.id}"]`);
-    if (!existingItem) {
-      todoBox.appendChild(todoItem);
-      const checkboxes = todoBox.querySelectorAll("input");
-      checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener("change", handleTodoActions);
-      });
-      console.log("XXXX", checkboxes);
+
+    // Append
+    todoBox.appendChild(todoItem);
+
+    // Delete button handler
+    const deleteButton = todoItem.querySelector(".delete-button");
+    deleteButton.addEventListener("click", () => {
+      const confirmClear = confirm("Are you sure?");
+      if (!confirmClear) return;
+      myToDoList = myToDoList.filter((t) => t.id !== item.id);
+      renderToDoItems(); // 🔄 changed: re-render instead of manual DOM remove
+    });
+
+    // Checkbox handler
+    const checkbox = todoItem.querySelector(".todo-checkbox");
+    checkbox.addEventListener("change", () => {
+      item.completed = checkbox.checked; // 🔄 changed: update state
+      checkbox.nextElementSibling.style.textDecoration = checkbox.checked
+        ? "line-through"
+        : "none";
+    });
+
+    // Initial UI sync
+    if (item.completed) {
+      checkbox.nextElementSibling.style.textDecoration = "line-through";
     }
   });
 }
 
-// complete and delete functionality
-function handleTodoActions(e) {
-  console.log("Checkbox clicked", e.target.value);
-  const checkbox = e.target;
-  if (checkbox.checked) {
-    // Mark item as completed
-    console.log("Checkbox checked", checkbox.id);
-    checkbox.nextElementSibling.style.textDecoration = "line-through";
-    //
-  } else {
-    // Mark item as not completed
-    console.log("Checkbox unchecked", checkbox.id);
-    checkbox.nextElementSibling.style.textDecoration = "none";
-  }
+// ========== Add Item ==========
+function addToDo() {
+  const text = todoInput.value.trim();
+  if (!text) return; // ignore empty
 
-  // Delete functionality
-  const deleteButtons = todoBox.querySelectorAll(".delete-button");
-  deleteButtons.forEach((deleteButton) => {
-    deleteButton.addEventListener("click", (e) => {
-      // const confirmClear = confirm("Are you sure?");
-      // if (!confirmClear) return;
-      //
-      deleteButton.parentElement.remove();
-      myToDoList = myToDoList.filter((item) => {
-        // keep items that do not match the deleted item's id
-        return item.id != deleteButton.getAttribute("data-id");
-      });
-    });
-  });
+  // Create new item object
+  const newTodoItem = {
+    id: Date.now(),
+    text,
+    completed: false,
+  };
+
+  // Push into state
+  myToDoList.push(newTodoItem);
+
+  // Clear input
+  todoInput.value = "";
+
+  // Re-render
+  renderToDoItems();
 }
 
-// Event listener for the Add button
-addButton.addEventListener("click", () => {
-  updateToDoList();
-  renderToDoItems();
-});
-
-const checkboxes = todoBox.querySelectorAll("input");
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener("change", handleTodoActions);
-});
+// Event listener for Add button
+addButton.addEventListener("click", addToDo);

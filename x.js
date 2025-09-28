@@ -1,0 +1,105 @@
+// todoScript.js
+// ============ To-Do Tab - OLD CODE - FULL OF ERRORS ===================================
+
+// Import icons
+import { createIcons, icons } from "https://cdn.skypack.dev/lucide";
+createIcons({ icons });
+
+const todoBox = document.querySelector(".todoBox");
+let myToDoList = [];
+//
+const todoInput = document.createElement("input");
+todoInput.type = "text";
+todoInput.placeholder = "Enter a new to-do item";
+todoInput.classList.add("todo-input");
+
+const addButton = document.createElement("button");
+addButton.innerHTML = "Add";
+addButton.classList.add("smallButton");
+
+todoBox.appendChild(todoInput);
+todoBox.appendChild(addButton);
+
+// Function to update the displayed to-do list
+function updateToDoList() {
+  if (todoInput.value.trim() === "") {
+    return; // Ignore empty input
+  }
+  // Create a new to-do item object
+  const newTodoItem = {
+    id: Date.now(),
+    text: todoInput.value.trim(),
+    completed: false,
+  };
+  // Add the new item to the list
+  myToDoList.push(newTodoItem);
+  // renderToDoItems();
+  todoInput.value = ""; // Clear input field
+}
+
+// Container to hold the to-do items
+function renderToDoItems() {
+  // Render each to-do item
+  myToDoList.forEach((item) => {
+    const todoItem = document.createElement("div");
+    todoItem.classList.add("todo-item");
+    todoItem.innerHTML = `
+      <button class="delete-button" data-id="${item.id}">Delete</button>
+      <input class="todo-checkbox" type="checkbox" id="todo-${item.id}" ${
+      item.completed ? "checked" : ""
+    }>
+      <label class="todo-label" for="todo-${item.id}">${item.text}</label>
+    `;
+    const deleteButtons = todoBox.querySelectorAll(".delete-button");
+    console.log("btns", deleteButtons.length);
+    deleteButtons.forEach((deleteButton) => {
+      deleteButton.addEventListener("click", (e) => {
+        const confirmClear = confirm("Are you sure?");
+        if (!confirmClear) return;
+        deleteButton.parentElement.remove();
+        myToDoList = myToDoList.filter((item) => {
+          // keep items that do not match the deleted item's id
+          return item.id != deleteButton.getAttribute("data-id");
+        });
+      });
+    });
+    // check for duplicates before adding
+    const existingItem = todoBox.querySelector(`input[id="todo-${item.id}"]`);
+    if (!existingItem) {
+      todoBox.appendChild(todoItem);
+      const checkboxes = todoBox.querySelectorAll("input");
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", checkCompleteTasks);
+      });
+      console.log("XXXX", checkboxes);
+    }
+  });
+}
+// renderToDoItems();
+
+// complete and delete functionality
+function checkCompleteTasks(e) {
+  console.log("Checkbox clicked", e.target.value);
+  const checkbox = e.target;
+  if (checkbox.checked) {
+    // Mark item as completed
+    console.log("Checkbox checked", checkbox.id);
+    checkbox.nextElementSibling.style.textDecoration = "line-through";
+    //
+  } else {
+    // Mark item as not completed
+    console.log("Checkbox unchecked", checkbox.id);
+    checkbox.nextElementSibling.style.textDecoration = "none";
+  }
+}
+
+// Event listener for the Add button
+addButton.addEventListener("click", () => {
+  updateToDoList();
+  renderToDoItems();
+});
+
+const checkboxes = todoBox.querySelectorAll("input");
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", checkCompleteTasks);
+});
